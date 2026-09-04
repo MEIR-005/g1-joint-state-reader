@@ -1,0 +1,22 @@
+# Сборка
+build/
+cmake-build-*/
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
+Makefile
+
+# Бинарники и объектники
+g1_state_reader
+*.o
+*.so
+*.a
+
+# Редакторы
+.vscode/
+.idea/
+*.swp
+*~
+
+# Система
+.DS_Store

@@ -1,0 +1,42 @@
+cmake_minimum_required(VERSION 3.10)
+project(g1_state_reader CXX)
+
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+
+# Путь к unitree_sdk2. Переопределяется так:
+#   cmake .. -DUNITREE_SDK=/путь/к/unitree_sdk2
+set(UNITREE_SDK "$ENV{HOME}/unitree_sdk2" CACHE PATH "Путь к unitree_sdk2")
+
+if(NOT EXISTS "${UNITREE_SDK}/include/unitree/idl/hg")
+  message(FATAL_ERROR
+    "В ${UNITREE_SDK} нет заголовков hg. Нужна версия unitree_sdk2 "
+    "с поддержкой гуманоидов. Укажи путь через -DUNITREE_SDK=...")
+endif()
+
+# Архитектура библиотек: aarch64 на Jetson, x86_64 на обычном ПК.
+if(CMAKE_SYSTEM_PROCESSOR MATCHES "aarch64|arm64")
+  set(SDK_ARCH "aarch64")
+else()
+  set(SDK_ARCH "x86_64")
+endif()
+
+add_executable(g1_state_reader src/g1_state_reader.cpp)
+
+target_include_directories(g1_state_reader PRIVATE
+  ${UNITREE_SDK}/include
+  ${UNITREE_SDK}/thirdparty/include
+  ${UNITREE_SDK}/thirdparty/include/ddscxx
+  ${UNITREE_SDK}/thirdparty/include/iceoryx/v2.0.2
+)
+
+target_link_directories(g1_state_reader PRIVATE
+  ${UNITREE_SDK}/lib/${SDK_ARCH}
+)
+
+target_link_libraries(g1_state_reader
+  unitree_sdk2
+  ddsc
+  ddscxx
+  pthread
+)
