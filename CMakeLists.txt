@@ -1,20 +1,15 @@
 cmake_minimum_required(VERSION 3.10)
-project(g1_state_reader CXX)
+project(g1_joint_state_reader CXX)
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-# Путь к unitree_sdk2. Переопределяется так:
-#   cmake .. -DUNITREE_SDK=/путь/к/unitree_sdk2
-set(UNITREE_SDK "$ENV{HOME}/unitree_sdk2" CACHE PATH "Путь к unitree_sdk2")
+set(UNITREE_SDK "$ENV{HOME}/unitree_sdk2" CACHE PATH "Path to unitree_sdk2")
 
 if(NOT EXISTS "${UNITREE_SDK}/include/unitree/idl/hg")
-  message(FATAL_ERROR
-    "В ${UNITREE_SDK} нет заголовков hg. Нужна версия unitree_sdk2 "
-    "с поддержкой гуманоидов. Укажи путь через -DUNITREE_SDK=...")
+  message(FATAL_ERROR "No hg headers in ${UNITREE_SDK}. Pass -DUNITREE_SDK=...")
 endif()
 
-# Архитектура библиотек: aarch64 на Jetson, x86_64 на обычном ПК.
 if(CMAKE_SYSTEM_PROCESSOR MATCHES "aarch64|arm64")
   set(SDK_ARCH "aarch64")
 else()
