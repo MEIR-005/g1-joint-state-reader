@@ -2,7 +2,7 @@
 
 A C++ node for the **Unitree G1** humanoid robot. Subscribes to the `rt/lowstate`
 DDS topic and prints body orientation, joint angles and motor temperatures to the
-terminal. Read-only — it never commands the robot or moves anything.
+terminal. Read-only-it never commands the robot or moves anything.
 
 Useful for diagnostics: you can see which joints are loaded, whether motors are
 heating up, whether the robot stands level, and what the arms actually do during
@@ -11,7 +11,7 @@ a gesture.
 ## Example output
 
 ```
-========== G1 state ==========
+           G1 state 
 Body orientation  roll 0.008  pitch 0.002  yaw 3.119
 
 Left leg:
