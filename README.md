@@ -33,8 +33,8 @@ Left leg:
 ## Build
 
 ```bash
-git clone https://github.com/MEIR-005/g1-state-reader.git
-cd g1-state-reader
+git clone https://github.com/MEIR-005/g1-joint-state-reader.git
+cd g1-joint-state-reader
 mkdir build && cd build
 cmake ..
 make
