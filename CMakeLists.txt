@@ -16,7 +16,7 @@ else()
   set(SDK_ARCH "x86_64")
 endif()
 
-add_executable(g1_state_reader /g1_state_reader.cpp)
+add_executable(g1_state_reader g1_state_reader.cpp)
 
 target_include_directories(g1_state_reader PRIVATE
   ${UNITREE_SDK}/include
