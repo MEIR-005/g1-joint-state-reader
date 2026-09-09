@@ -108,6 +108,3 @@ argument. Clear it before running:
 unset CYCLONEDDS_URI
 ```
 
-## License
-
-MIT
